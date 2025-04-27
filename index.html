@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add these before your closing </body> tag -->
+
+
+<link rel="stylesheet" href="styles.css">
+    <title>BC Management System</title>
+    
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page">
+        <div class="container">
+            <div class="login-container card">
+                <div class="login-logo">
+                    <h1>BC Management</h1>
+                </div>
+                <div class="login-title">
+                    <h2>Login</h2>
+                </div>
+                <div id="login-alert" class="hidden alert alert-danger">
+                    Invalid username or password!
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter your username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" style="width: 100%;">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="hidden">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <a href="#" class="logo">BC Management System</a>
+                <div class="user-info">
+                    <span class="user-name" id="admin-name">Admin</span>
+                  
+                    <div class="notification-bell">
+                        <button id="notification-bell-btn" class="btn-icon">
+                          <span class="bell-icon" style="background-color: transparent;">🔔</span>
+                          <span id="notification-count" class="notification-badge hidden">0</span>
+                        </button>
+                        <div id="notification-dropdown" class="notification-dropdown hidden">
+                          <div class="notification-header">
+                            <h3>Notifications</h3>
+                            <button id="mark-all-read-btn" class="btn-text">Mark all as read</button>
+                          </div>
+                          <div id="notification-container" class="notification-list">
+                            <!-- Notifications will be displayed here -->
+                          </div>
+                        </div>
+                      </div>
+                      <button id="logout-btn" class="btn btn-danger">Logout</button>               
+                </div>
+       
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav">
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="#" class="nav-link active" data-tab="dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="members">Members</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="transactions">Transactions</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="schedules">Schedules</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="reports">Reports</a></li>
+                </ul>
+            </div>
+
+            <!-- Dashboard Tab -->
+            <div id="dashboard-tab" class="tab-content active">
+                <h2>Admin Dashboard</h2>
+                
+                <div class="dashboard-cards">
+                    <div class="stat-card">
+                        <div class="number" id="total-members">0</div>
+                        <div class="label">Total Members</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="total-amount">PKR 0</div>
+                        <div class="label">Total Collected</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="pending-payments">0</div>
+                        <div class="label">Pending Payments</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Transactions</h3>
+                    <table class="table" id="recent-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Member</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-transactions-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                    <a href="#" class="btn" data-tab="transactions">View All Transactions</a>
+                </div>
+                <div class="card">
+                    <h3>Data Management</h3>
+                    <div class="export-buttons">
+                      <button id="export-all-btn" class="btn">Export All Data</button>
+                      <button id="export-admin-report-btn" class="btn btn-primary">
+                        <i class="fas fa-file-export"></i> Export Admin Report
+                      </button>
+                      <button id="export-members-btn" class="btn">Export Members</button>
+                      <button id="export-transactions-btn" class="btn">Export Transactions</button>
+                    </div>
+                  </div>
+                  <!-- Add to your admin dashboard HTML -->
+
+
+            </div>
+
+
+            <!-- Members Tab -->
+            <div id="members-tab" class="tab-content">
+                <div class="header">
+                    <h2>Manage Members</h2>
+                    <button id="add-member-btn" class="btn btn-success">Add New Member</button>
+                </div>
+                
+                <div class="card">
+                    <table class="table" id="members-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Amount Due</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="members-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Transactions Tab -->
+            <div id="transactions-tab" class="tab-content">
+                <div class="header">
+                    <h2>Transaction History</h2>
+                    <button id="add-transaction-btn" class="btn btn-success">Record Payment</button>
+                </div>
+                
+                <div class="card">
+                    <div class="form-group">
+                        <label for="transaction-filter">Filter By</label>
+                        <select class="form-control" id="transaction-filter">
+                            <option value="all">All Transactions</option>
+                            <option value="paid">Paid</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    
+                    <table class="table" id="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Member</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div id="schedules-tab" class="tab-content">
+                <div class="header">
+                    <h2>Payment Schedules</h2>
+                    <button id="create-schedule-btn" class="btn btn-success">Create Schedule</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Upcoming Payments</h3>
+                    <table class="table" id="admin-schedules-table">
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Due Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-schedules-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+
+            <!-- Reports Tab -->
+            <div id="reports-tab" class="tab-content">
+                <h2>Financial Reports</h2>
+                
+                <div class="card">
+                    <h3>Payment Summary</h3>
+                    <div class="form-group">
+                        <label for="report-period">Select Period</label>
+                        <select class="form-control" id="report-period">
+                            <option value="this-month">This Month</option>
+                            <option value="last-month">Last Month</option>
+                            <option value="this-year">This Year</option>
+                            <option value="all-time">All Time</option>
+                        </select>
+                    </div>
+                    
+                    <div class="dashboard-cards">
+                        <div class="stat-card">
+                            <div class="number" id="report-total-collected">PKR 0</div>
+                            <div class="label">Total Collected</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="number" id="report-total-pending">PKR 0</div>
+                            <div class="label">Total Pending</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="number" id="report-collection-rate">0%</div>
+                            <div class="label">Collection Rate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Member-wise Collections</h3>
+                    <table class="table" id="member-collections-table">
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Total Contribution</th>
+                                <th>Remaining Due</th>
+                                <th>Last Payment Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="member-collections-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Member Dashboard -->
+    <div id="member-dashboard" class="hidden">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <a href="#" class="logo">BC Management System</a>
+                <div class="user-info">
+                    <span class="user-name" id="member-name">Member</span>
+                    <button id="member-logout-btn" class="btn btn-danger">Logout</button>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav">
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="#" class="nav-link active" data-tab="member-home">Dashboard</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="payment-history">Payment History</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-tab="payment-schedule">Payment Schedule</a></li>
+                </ul>
+            </div>
+
+            <!-- Member Dashboard Tab -->
+            <div id="member-home-tab" class="tab-content active">
+                <h2>Member Dashboard</h2>
+                
+                <div class="dashboard-cards">
+                    <div class="stat-card">
+                        <div class="number" id="member-total-paid">PKR 0</div>
+                        <div class="label">Total Contribution</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="member-due-amount">PKR 0</div>
+                        <div class="label">Amount Due</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number" id="member-next-payment">-</div>
+                        <div class="label">Next Payment Date</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Money Slip</h3>
+                    <div id="money-slip">
+                        <div class="text-center">
+                            <h2>BC Committee Money Slip</h2>
+                            <p>Member: <span id="slip-member-name">-</span></p>
+                            <p>Member ID: <span id="slip-member-id">-</span></p>
+                        </div>
+                        <table class="table" id="slip-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="slip-body">
+                                <!-- Dynamically populated -->
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <p>Total Contribution: <span id="slip-total">PKR 0</span></p>
+                            <p>Amount Due: <span id="slip-due">PKR 0</span></p>
+                        </div>
+                    </div>
+                    <button id="print-slip-btn" class="btn">Print Money Slip</button>
+                </div>
+            </div>
+
+            <!-- Payment History Tab -->
+            <div id="payment-history-tab" class="tab-content">
+                <h2>Payment History</h2>
+                
+                <div class="card">
+                    <table class="table" id="member-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="member-transactions-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Payment Schedule Tab -->
+            <div id="payment-schedule-tab" class="tab-content">
+                <h2>Payment Schedule</h2>
+                
+                <div class="card">
+                    <h3>Upcoming Payments</h3>
+                    <table class="table" id="payment-schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Due Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payment-schedule-body">
+                            <!-- Dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="add-member-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="close-add-member">&times;</span>
+                <h2>Add New Member</h2>
+            </div>
+            <form id="add-member-form">
+                <div class="form-group">
+                    <label for="member-name-input">Name</label>
+                    <input type="text" class="form-control" id="member-name-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-contact">Contact Number</label>
+                    <input type="text" class="form-control" id="member-contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-email">Email</label>
+                    <input type="email" class="form-control" id="member-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-due">Initial Amount Due (PKR)</label>
+                    <input type="number" class="form-control" id="member-due" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-username">Username</label>
+                    <input type="text" class="form-control" id="member-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="member-password">Password</label>
+                    <input type="password" class="form-control" id="member-password" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="cancel-add-member">Cancel</button>
+                    <button type="submit" class="btn btn-success">Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Transaction Modal -->
+    <div id="add-transaction-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="close-add-transaction">&times;</span>
+                <h2>Record Payment</h2>
+            </div>
+            <form id="add-transaction-form">
+                <div class="form-group">
+                    <label for="transaction-member">Select Member</label>
+                    <select class="form-control" id="transaction-member" required>
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-amount">Amount (PKR)</label>
+                    <input type="number" class="form-control" id="transaction-amount" required>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-status">Status</label>
+                    <select class="form-control" id="transaction-status" required>
+                        <option value="paid">Paid</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="transaction-notes">Notes (Optional)</label>
+                    <textarea class="form-control" id="transaction-notes" rows="3"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="cancel-add-transaction">Cancel</button>
+                    <button type="submit" class="btn btn-success">Record Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="create-schedule-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="close-create-schedule">&times;</span>
+                <h2>Create Payment Schedule</h2>
+            </div>
+            <form id="create-schedule-form">
+                <div class="form-group">
+                    <label for="schedule-member">Select Member</label>
+                    <select class="form-control" id="schedule-member" required>
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-template">Payment Schedule Template</label>
+                    <select class="form-control" id="schedule-template" required>
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+                
+                <div id="template-details-container" class="hidden">
+                    <!-- Template details will be shown here -->
+                </div>
+                
+                <div id="custom-dates-container" class="hidden">
+                    <!-- Custom date fields will be added here -->
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" id="add-custom-date-btn" class="btn">Add Payment Date</button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="schedule-start-date">Start Date</label>
+                    <input type="date" class="form-control" id="schedule-start-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="schedule-total-amount">Total Amount (PKR)</label>
+                    <input type="number" class="form-control" id="schedule-total-amount" required>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="cancel-create-schedule">Cancel</button>
+                    <button type="submit" class="btn btn-success">Create Schedule</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Hidden field for scheduled payment info -->
+    <div id="schedule-payment-info" class="hidden"></div>
+    
+
+    <!-- Edit Member Modal -->
+    <div id="edit-member-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="close-edit-member">&times;</span>
+                <h2>Edit Member</h2>
+            </div>
+            <form id="edit-member-form">
+                <input type="hidden" id="edit-member-id">
+                <div class="form-group">
+                    <label for="edit-member-name">Name</label>
+                    <input type="text" class="form-control" id="edit-member-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-contact">Contact Number</label>
+                    <input type="text" class="form-control" id="edit-member-contact" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-email">Email</label>
+                    <input type="email" class="form-control" id="edit-member-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-member-due">Amount Due (PKR)</label>
+                    <input type="number" class="form-control" id="edit-member-due" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="cancel-edit-member">Cancel</button>
+                    <button type="submit" class="btn btn-success">Update Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2025 BC Management System. Developed by Umer Qureshi</p>
+    </div>
+
+<!-- Add this at the end of your body tag, just before the closing </body> -->
+
+<script src="js/main.js"></script>
+
+
+
+</body>
+</html>
