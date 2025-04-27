@@ -518,10 +518,52 @@ label {
 }
 
 @media screen and (max-width: 768px) {
+  /* Add this CSS to fix the navbar responsiveness on mobile */
+
+  .navbar {
+    padding: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .navbar-brand {
+    font-size: 18px;
+    margin-right: 0;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  
+  .navbar-user {
+    font-size: 12px;
+    margin-right: auto;
+  }
+  
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  #notification-bell-btn {
+    margin-right: 10px;
+  }
+  
+  .logout-btn {
+    padding: 5px 15px;
+    font-size: 12px;
+  }
+  
+  /* Fix notification dropdown positioning */
+  #notification-dropdown {
+    right: 0;
+    left: auto;
+    width: 280px;
+    max-width: 90vw;
+  }
+
   .header {
     flex-direction: column;
     align-items: flex-start;
   }
+  
   
   .user-info {
     margin-top: 15px;
@@ -567,6 +609,18 @@ label {
 }
 
 @media screen and (max-width: 576px) {
+    .navbar {
+    padding: 8px;
+  }
+  
+  .navbar-user {
+    font-size: 11px;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .container {
     padding: 15px;
   }
