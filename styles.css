@@ -194,28 +194,64 @@ label {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  padding-bottom: 15px;
-  border-bottom: 2px solid var(--primary-color);
+  padding: 15px 20px;
+  background-color: rgba(30, 30, 30, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(0, 168, 107, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  /* overflow: hidden; */
+}
+
+/* Futuristic glow effect */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+  z-index: 1;
 }
 
 .logo {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--primary-color);
   text-decoration: none;
+  position: relative;
+  padding-left: 10px;
+  letter-spacing: 0.5px;
+}
+
+.logo::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: var(--primary-color);
+  border-radius: 2px;
 }
 
 .user-info {
   display: flex;
   align-items: center;
+  gap: 15px;
 }
 
 .user-name {
-  margin-right: 15px;
   font-weight: 600;
   color: var(--text-color);
+  background-color: rgba(45, 45, 45, 0.7);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .nav {
   background-color: var(--card-bg);
   box-shadow: var(--box-shadow);
@@ -355,56 +391,68 @@ label {
 }
 .notification-bell {
   position: relative;
-  margin-right: 15px;
+  margin-right: 5px;
 }
 
 .btn-icon {
-  background: none;
-  border: none;
+  background: rgba(45, 45, 45, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
   color: var(--text-color);
-  position: relative;
+  padding: 6px 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+  background: rgba(0, 168, 107, 0.2);
 }
 
 .notification-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  top: -6px;
+  right: -6px;
   background-color: var(--danger-color);
   color: white;
   border-radius: 50%;
   width: 18px;
   height: 18px;
-  font-size: 12px;
+  font-size: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--card-bg);
 }
 
+/* Notification dropdown styling */
 .notification-dropdown {
   position: absolute;
-  top: 40px;
-  right: 0;
+  top: 45px;
+  right: -10px;
   width: 320px;
-  background-color: var(--card-bg);
+  background-color: rgba(30, 30, 30, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   z-index: 1000;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 168, 107, 0.2);
+  overflow: hidden;
 }
 
 .notification-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
+  padding: 12px 15px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to right, rgba(0, 168, 107, 0.1), transparent);
 }
 
 .notification-header h3 {
   margin: 0;
   font-size: 16px;
+  color: var(--primary-color);
 }
 
 .btn-text {
@@ -413,7 +461,32 @@ label {
   color: var(--primary-color);
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
+
+.btn-text:hover {
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+/* Logout button styling */
+#logout-btn, #member-logout-btn {
+  background: linear-gradient(135deg, var(--danger-color), #ff4d5a);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+  margin: 0;
+}
+
+#logout-btn:hover, #member-logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.4);
+}
+
 
 .notification-list {
   max-height: 300px;
@@ -518,57 +591,31 @@ label {
 }
 
 @media screen and (max-width: 768px) {
-  /* Add this CSS to fix the navbar responsiveness on mobile */
-
-  .navbar {
-    padding: 10px;
-    flex-wrap: wrap;
-  }
-  
-  .navbar-brand {
-    font-size: 18px;
-    margin-right: 0;
-    width: 100%;
-    margin-bottom: 5px;
-  }
-  
-  .navbar-user {
-    font-size: 12px;
-    margin-right: auto;
-  }
-  
-  .navbar-actions {
-    display: flex;
-    align-items: center;
-  }
-  
-  #notification-bell-btn {
-    margin-right: 10px;
-  }
-  
-  .logout-btn {
-    padding: 5px 15px;
-    font-size: 12px;
-  }
-  
-  /* Fix notification dropdown positioning */
-  #notification-dropdown {
-    right: 0;
-    left: auto;
-    width: 280px;
-    max-width: 90vw;
-  }
-
   .header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 12px 15px;
+    gap: 10px;
   }
-  
-  
+    
+  .logo {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-left: 0;
+  }
+  .logo::before {
+    display: none;
+  }
+
   .user-info {
-    margin-top: 15px;
     width: 100%;
     justify-content: space-between;
+    margin-top: 0;
+  }
+  
+  .notification-dropdown {
+    width: 280px;
+    right: -15px;
   }
   
   .nav-links {
@@ -609,18 +656,6 @@ label {
 }
 
 @media screen and (max-width: 576px) {
-    .navbar {
-    padding: 8px;
-  }
-  
-  .navbar-user {
-    font-size: 11px;
-    max-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
   .container {
     padding: 15px;
   }
@@ -715,6 +750,86 @@ label {
   gap: 10px;
 }
 
+@media screen and (max-width: 480px) {
+  .user-name {
+    font-size: 13px;
+    padding: 5px 8px;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .notification-bell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .btn-icon {
+    padding: 5px 8px;
+    font-size: 18px;
+  }
+  
+  #logout-btn, #member-logout-btn {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+  
+  .notification-dropdown {
+    width: calc(100vw - 30px);
+    max-width: 300px;
+    /* Fix dropdown positioning */
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Fix for very small screens */
+@media screen and (max-width: 360px) {
+  .user-info {
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  
+  .user-name {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    max-width: none;
+  }
+  
+  .notification-bell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+  }
+  
+  /* Ensure dropdown is visible */
+  .notification-dropdown {
+    position: fixed;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-width: 300px;
+  }
+  
+  #logout-btn, #member-logout-btn {
+    flex-grow: 1;
+  }
+}
+
+/* Add this to ensure dropdown is always visible */
+.notification-dropdown {
+  z-index: 1001;
+  max-height: 80vh;
+  overflow-y: auto;
+}
 @media screen and (max-width: 768px) {
   .modal-footer {
     flex-direction: column;
