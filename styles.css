@@ -1,7 +1,7 @@
 :root {
   --primary-color: #00f5c8; /* Bright teal */
   --primary-hover: #00d4b0;
-  --secondary-color: #1a1a1a; /* Dark gray/black */
+  --secondary-color: #163f5285; /* Dark gray/black */
   --accent-color: #7928ca; /* Purple accent */
   --text-color: #f8f9fa;
   --text-muted: #adb5bd;
@@ -123,19 +123,22 @@ p {
 
 .btn-danger {
   background: linear-gradient(135deg, var(--danger-color), #ff4d5a);
+  color: #ff4d5a;
 }
 
 .btn-danger:hover {
   background: linear-gradient(135deg, #ff4d5a, #c82333);
+  color: white;
 }
 
 .btn-warning {
   background: linear-gradient(135deg, var(--warning-color), #e0a800);
-  color: #212529;
+  color: #d1d417;
 }
 
 .btn-warning:hover {
   background: linear-gradient(135deg, #ffc107, #d39e00);
+  color: white;
 }
 
 .form-group {
@@ -210,17 +213,18 @@ label {
 }
 
 .badge-success {
-  background-color: rgba(0, 168, 107, 0.2);
+  background-color: #00f5c865;
+  
   color: var(--success-color);
 }
 
 .badge-danger {
-  background-color: rgba(220, 53, 69, 0.2);
+  background-color: rgba(233, 49, 68, 0.801);
   color: var(--danger-color);
 }
 
 .badge-warning {
-  background-color: rgba(255, 193, 7, 0.2);
+  background-color: rgba(255, 193, 7, 0.829);
   color: var(--warning-color);
 }
 
@@ -373,8 +377,17 @@ label {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
-
+#login-page .container {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #login-page::before {
   content: "";
   position: absolute;
@@ -602,12 +615,45 @@ label {
 .login-container {
   animation: borderGlow 4s infinite ease-in-out;
 }
-
+/* Replace your existing @media screen and (max-width: 480px) section with this */
+@media screen and (max-width: 480px) {
+  .login-container {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: 20px 15px;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;}
+    #login-page .container {
+      padding: 0 10px;
+    }
+  
+  #login-page {
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+  
+  /* Reset any potential right alignment */
+  .login-container, .container {
+    left: auto;
+    right: auto;
+    transform: none;
+  }
+}
 /* Responsive styles for login page */
 @media screen and (max-width: 576px) {
   .login-container {
     width: 95%;
     padding: 25px 20px;
+    
     margin: 20px auto;
   }
 
@@ -636,6 +682,7 @@ label {
 @media screen and (max-width: 380px) {
   .login-container {
     padding: 20px 15px;
+    
   }
 
   .login-logo h1 {
