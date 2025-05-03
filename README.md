@@ -63,16 +63,7 @@ With separate interfaces for administrators and members, the application ensures
 - Modern dark theme with neon accents
 - Intuitive navigation and user-friendly controls
 
-
-## 🖥️ Screenshots
-
-`<div align="center">
-  <img src="https://raw.githubusercontent.com/username/bc-management-system/main/assets/screenshot-login.png" alt="Login Screen" width="45%">
-  <img src="https://raw.githubusercontent.com/username/bc-management-system/main/assets/screenshot-dashboard.png" alt="Admin Dashboard" width="45%">
-</div>``<div align="center">
-  <img src="https://raw.githubusercontent.com/username/bc-management-system/main/assets/screenshot-members.png" alt="Member Management" width="45%">
-  <img src="https://raw.githubusercontent.com/username/bc-management-system/main/assets/screenshot-reports.png" alt="Financial Reports" width="45%">
-</div>`## 🛠️ Technology Stack
+## 🛠️ Technology Stack
 
 - **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 - **Storage**: LocalStorage (Client-side data persistence)
