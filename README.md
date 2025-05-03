@@ -1,12 +1,12 @@
 ### BC Management System
 
-`<div align="center">
+<div align="center">
   <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version 1.0.0">
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License MIT">
   <img src="https://img.shields.io/badge/status-production-brightgreen.svg" alt="Status Production">
-</div>``<p align="center">
-  <img src="https://raw.githubusercontent.com/username/bc-management-system/main/assets/logo.png" alt="BC Management System Logo" width="200">
-</p>`## 🚀 Overview
+</div>
+
+## 🚀 Overview
 
 BC Management System is a modern, responsive web application designed to streamline the management of Business Committees or Contribution Groups. The system provides a comprehensive solution for tracking member contributions, managing payment schedules, and generating detailed financial reports.
 
@@ -236,8 +236,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - All contributors who have helped shape this project
 
 
----
-
-`<div align="center">
+<div align="center">
   <p>© 2025 BC Management System. Developed with ❤️ by Umer Qureshi</p>
 </div>
